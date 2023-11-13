@@ -1,7 +1,5 @@
-// Import necessary modules
 const mongoose = require('mongoose');
 
-// Define the Goal schema
 const goalSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
