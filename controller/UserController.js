@@ -60,7 +60,7 @@ const User = require('../models/User'); // Assuming you have a User model
 const router = express.Router();
 
 // Register a new user
-router.post('/register', async (req, res) => {
+router.post('/signup', async (req, res) => {
   try {
     const { username, email, password } = req.body;
 
@@ -135,5 +135,8 @@ router.get('/profile', async (req, res) => {
 });
 
 // Logout (optional, as it depends on how you implement authentication)
+router.post('/logout', (req,res) =>{
+  res.cookie('token', '').json('ok');
+})
 
 module.exports = router;
