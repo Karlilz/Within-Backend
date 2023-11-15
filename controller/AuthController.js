@@ -9,18 +9,24 @@ const router = express.Router();
 // SIGNUP ROUTE
 router.post('/signup', async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    // const { username, email, password } = req.body;
+    const { username, password } = req.body;
 
-    const existingUser = await User.findOne({ email });
+    // const existingUser = await User.findOne({ email });
+    // if (existingUser) {
+    //   return res.status(400).json({ message: 'User already exists with this email.' });
+    // }
+
+    const existingUser = await User.findOne({ username });
     if (existingUser) {
-      return res.status(400).json({ message: 'User already exists with this email.' });
+      return res.status(400).json({ message: 'User already exists with this username.' });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = new User({
       username,
-      email,
+      // email,
       password: hashedPassword,
     });
 
@@ -36,9 +42,16 @@ router.post('/signup', async (req, res) => {
 // LOGIN ROUTE - generates JWT token
 router.post('/login', async (req, res) => {
   try {
-    const { email, password } = req.body;
+    // const { email, password } = req.body;
+    const { username, password } = req.body;
 
-    const user = await User.findOne({ email });
+
+    // const user = await User.findOne({ email });
+    // if (!user) {
+    //   return res.status(401).json({ message: 'Invalid credentials.' });
+    // }
+
+    const user = await User.findOne({ username });
     if (!user) {
       return res.status(401).json({ message: 'Invalid credentials.' });
     }
@@ -57,21 +70,21 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// PROFILE ROUTE   
-router.get('/profile', async (req, res) => {
-  try {
-    const user = await User.findById(req.userId).select('-password');
+// // PROFILE ROUTE   
+// router.get('/profile', async (req, res) => {
+//   try {
+//     const user = await User.findById(req.userId).select('-password');
 
-    if (!user) {
-      return res.status(404).json({ message: 'User not found.' });
-    }
+//     if (!user) {
+//       return res.status(404).json({ message: 'User not found.' });
+//     }
 
-    res.status(200).json(user);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json(error);
-  }
-});
+//     res.status(200).json(user);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json(error);
+//   }
+// });
 
 // LOGOUT
 router.post('/logout', (req,res) =>{

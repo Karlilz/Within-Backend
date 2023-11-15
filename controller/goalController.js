@@ -5,23 +5,23 @@ const Goal = require('../model/Goal');
 // INDEX ROUTE
 router.get ("/goals", async (req,res) =>{
   try{
-     res.json(await User.find())
+     res.json(await Goal.find())
   }catch(error){
      res.status(400).json(error)
   }
 })
 
 // NEW ROUTE
-router.get('/goals/new', (req, res) => {
-  // ADD FORM
-  res.status(200).json({ message: 'Display form to create a new goal' });
-});
+// router.get('/goals/new', (req, res) => {
+//   // ADD FORM
+//   res.status(200).json({ message: 'Display form to create a new goal' });
+// });
 
 
 // DELETE ROUTE
 router.delete("/:id", async(req,res) =>{
   try {
-      res.json(await User.findByIdAndDelete(req.params.id))
+      res.json(await Goal.findByIdAndDelete(req.params.id))
   }catch(error){
       res.status(400).json(error)
   }
@@ -65,20 +65,20 @@ router.delete("/:id", async(req,res) =>{
 // });
 
 // CREATE ROUTE
-// router.post("/goals", async (req,res) => {
-//     try {
-//         res.json( await User.create(req.body))
-//     }catch (error){
-//         res.status(400).json(error)
-//     }
-// });
+router.post("/", async (req,res) => {
+  console.log(req.body)
+    try {
+      let response = await Goal.create(req.body)
+      console.log(response)
+        res.json(response)
+    }catch (error){
+        res.status(400).json(error)
+    }
+});
 
-router.post('/goals', (req, res) => {
-  Goal.create(req.body);
-})
 
 // // EDIT ROUTE
-// router.get('/goals/:id/edit', async (req, res) => {
+// router.get('/:id/edit', async (req, res) => {
 //   try {
 //     // Extract goal ID from the request parameters
 //     const goalId = req.params.id;
@@ -110,7 +110,7 @@ router.post('/goals', (req, res) => {
 // SHOW ROUTE
 router.get("/:id", async (req,res)=>{
   try{
-      res.json(await User.findById(req.params.id));
+      res.json(await Goal.findById(req.params.id));
   }catch (error){
       res.status(400).json(error)
   }
