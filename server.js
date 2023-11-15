@@ -18,10 +18,10 @@ app.use(bodyParser.urlencoded({ extended: true })); // creates req.body
 app.use(express.json());
 app.use(morgan('tiny'));
 app.use(bodyParser.json());
-app.use('/',AuthController ) //telling app to use the Auth model
-app.use('/goals', goalController) //telling app to use Goal model
-app.use('journal', journalController) //telling app to use Journal model
-app.use('progress', progressController) //telling app to use Progress model
+app.use('/',AuthController ) 
+app.use('/goals', goalController) 
+app.use('/entries', journalController) 
+app.use('/progress', progressController) 
 
 // Define routes
 app.get('/', (req, res) => {

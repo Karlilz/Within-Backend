@@ -1,21 +1,13 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
 const User = require('../model/User'); 
-
 const router = express.Router();
 
 // SIGNUP ROUTE
 router.post('/signup', async (req, res) => {
   try {
-    // const { username, email, password } = req.body;
     const { username, password } = req.body;
-
-    // const existingUser = await User.findOne({ email });
-    // if (existingUser) {
-    //   return res.status(400).json({ message: 'User already exists with this email.' });
-    // }
 
     const existingUser = await User.findOne({ username });
     if (existingUser) {
@@ -26,7 +18,6 @@ router.post('/signup', async (req, res) => {
 
     const newUser = new User({
       username,
-      // email,
       password: hashedPassword,
     });
 
@@ -42,14 +33,7 @@ router.post('/signup', async (req, res) => {
 // LOGIN ROUTE - generates JWT token
 router.post('/login', async (req, res) => {
   try {
-    // const { email, password } = req.body;
     const { username, password } = req.body;
-
-
-    // const user = await User.findOne({ email });
-    // if (!user) {
-    //   return res.status(401).json({ message: 'Invalid credentials.' });
-    // }
 
     const user = await User.findOne({ username });
     if (!user) {

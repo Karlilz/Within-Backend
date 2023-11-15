@@ -1,4 +1,3 @@
-// Import necessary modules
 const express = require('express');
 const router = express.Router();
 const Progress = require('../model/Progress');
