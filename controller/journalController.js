@@ -1,6 +1,6 @@
 // Assuming you have already imported necessary modules and models
 
-const JournalEntry = require('../models/JournalEntry');
+const JournalEntry = require('../model/JournalEntry');
 
 const journalController = {
   getEntries: async (req, res) => {
