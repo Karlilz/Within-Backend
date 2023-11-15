@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema
 const User = require('./User'); 
 
-// Define the Journal Entry Schema
 const journalEntrySchema = new mongoose.Schema({
   content: {
     type: String,
@@ -13,12 +13,11 @@ const journalEntrySchema = new mongoose.Schema({
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User', // Reference to the User model
+    ref: 'User', 
     required: true,
   },
 });
 
-// Create the Journal Entry model
 const JournalEntry = mongoose.model('JournalEntry', journalEntrySchema);
 
 module.exports = JournalEntry;

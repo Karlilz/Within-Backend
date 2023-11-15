@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const goalSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User', // Reference to the User model for associating goals with users
+    ref: 'User', 
     required: true,
   },
   content: {
@@ -14,9 +15,10 @@ const goalSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
-  progress: {
+  completionProgress: {
     type: Number,
-    default: 0, // Default progress value, can be updated as the user makes progress
+    default: 0,
+    max: 100,
   },
   completed: {
     type: Boolean,
@@ -28,8 +30,6 @@ const goalSchema = new mongoose.Schema({
   },
 });
 
-// Create the Goal model using the schema
 const Goal = mongoose.model('Goal', goalSchema);
 
-// Export the Goal model
 module.exports = Goal;

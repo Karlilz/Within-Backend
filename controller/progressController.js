@@ -1,7 +1,7 @@
 // Import necessary modules
 const express = require('express');
 const router = express.Router();
-const Progress = require('../models/Progress');
+const Progress = require('../model/Progress');
 
 // Method: Get Progress
 router.get('/:userId', async (req, res) => {
@@ -23,7 +23,7 @@ router.get('/:userId', async (req, res) => {
   }
 });
 
-// Method: Update Progress
+// UPDATE ROUTE
 router.put('/:userId', async (req, res) => {
   const userId = req.params.userId;
   const { confidenceScore, otherMetric } = req.body;
@@ -41,10 +41,8 @@ router.put('/:userId', async (req, res) => {
     userProgress.confidenceScore = confidenceScore || userProgress.confidenceScore;
     userProgress.otherMetric = otherMetric || userProgress.otherMetric;
 
-    // Save the updated progress data
     await userProgress.save();
 
-    // Return the updated progress data
     res.status(200).json(userProgress);
   } catch (error) {
     console.error(error);
