@@ -3,7 +3,7 @@ const router = express.Router();
 const Goal = require('../model/Goal'); 
 
 // INDEX ROUTE
-router.get ("/goals", async (req,res) =>{
+router.get ("/", async (req,res) =>{
   try{
      res.json(await Goal.find())
   }catch(error){
@@ -12,7 +12,7 @@ router.get ("/goals", async (req,res) =>{
 })
 
 // NEW ROUTE
-// router.get('/goals/new', (req, res) => {
+// router.get('/new', (req, res) => {
 //   // ADD FORM
 //   res.status(200).json({ message: 'Display form to create a new goal' });
 // });
