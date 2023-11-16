@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../model/User'); 
 const router = express.Router();
 
-// SIGNUP ROUTE
+// SIGNUP 
 router.post('/signup', async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -30,7 +30,7 @@ router.post('/signup', async (req, res) => {
   }
 });
 
-// LOGIN ROUTE - generates JWT token
+// LOGIN  - generates JWT token
 router.post('/login', async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -54,23 +54,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// // PROFILE ROUTE   
-// router.get('/profile', async (req, res) => {
-//   try {
-//     const user = await User.findById(req.userId).select('-password');
-
-//     if (!user) {
-//       return res.status(404).json({ message: 'User not found.' });
-//     }
-
-//     res.status(200).json(user);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json(error);
-//   }
-// });
-
-// LOGOUT
+// LOGOUT 
 router.post('/logout', (req,res) =>{
   res.cookie('token', '').json('ok');
 })
