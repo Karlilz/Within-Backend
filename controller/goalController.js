@@ -51,7 +51,7 @@ router.delete("/:id", async(req,res) =>{
 //     }
 
 //     // Update goal data
-//     goal.content = req.body.content;
+//     goal.goal = req.body.goal;
 //     goal.dueDate = req.body.dueDate;
 
 //     // Save the updated goal to the database
