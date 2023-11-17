@@ -8,6 +8,7 @@ const router = express.Router();
 router.post('/signup', async (req, res) => {
   try {
     const { username, password } = req.body;
+    console.log(username, password)
 
     const existingUser = await User.findOne({ username });
     if (existingUser) {
@@ -34,7 +35,7 @@ router.post('/signup', async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     const { username, password } = req.body;
-
+console.log(username, password)
     const user = await User.findOne({ username });
     if (!user) {
       return res.status(401).json({ message: 'Invalid credentials.' });
@@ -42,7 +43,7 @@ router.post('/login', async (req, res) => {
 
     const passwordMatch = await bcrypt.compare(password, user.password);
     if (!passwordMatch) {
-      return res.status(401).json({ message: 'Invalid credentials.' });
+      return res.status(401).json({ message: 'Invalid password.' });
     }
 
     const token = jwt.sign({ userId: user._id }, 'your-secret-key', { expiresIn: '1h' });

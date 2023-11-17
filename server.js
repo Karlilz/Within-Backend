@@ -18,10 +18,10 @@ app.use(bodyParser.urlencoded({ extended: true })); // creates req.body
 app.use(express.json());
 app.use(morgan('tiny'));
 app.use(bodyParser.json());
-app.use('/auth',AuthController ) 
+app.use('/',AuthController ) 
 app.use('/goals', goalController) 
-app.use('/entries', journalController) 
-app.use('/progress', progressController) 
+app.use('/journal', journalController) 
+// app.use('/progress', progressController) 
 
 // Define routes
 app.get('/', (req, res) => {
