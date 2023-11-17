@@ -29,40 +29,40 @@ router.delete("/:id", async(req,res) =>{
 
 
 // // UPDATE ROUTE 
-// router.put('/goals/:id', async (req, res) => {
-//   try {
-//     // Extract goal ID from the request parameters
-//     const goalId = req.params.id;
+router.put('/:id', async (req, res) => {
+  try {
+    // Extract goal ID from the request parameters
+    const goalId = req.params.id;
 
-//     // Find the goal in the database
-//     const goal = await Goal.findById(goalId);
+    // Find the goal in the database
+    const goal = await Goal.findById(goalId);
 
-//     // Check if the goal exists
-//     if (!goal) {
-//       return res.status(404).json({ message: 'Goal not found' });
-//     }
+    // Check if the goal exists
+    if (!goal) {
+      return res.status(404).json({ message: 'Goal not found' });
+    }
 
-//     // Assuming you have user authentication middleware that attaches the user ID to the request
-//     const userId = req.user.id;
+    // Assuming you have user authentication middleware that attaches the user ID to the request
+    // const userId = req.user.id;
 
-//     // Check if the authenticated user owns the goal
-//     if (goal.userId !== userId) {
-//       return res.status(403).json({ message: 'Unauthorized access to the goal' });
-//     }
+    // Check if the authenticated user owns the goal
+    // if (goal.userId !== userId) {
+    //   return res.status(403).json({ message: 'Unauthorized access to the goal' });
+    // }
 
-//     // Update goal data
-//     goal.goal = req.body.goal;
-//     goal.dueDate = req.body.dueDate;
+    // Update goal data
+    goal.content = req.body.content;
+    goal.dueDate = req.body.dueDate;
 
-//     // Save the updated goal to the database
-//     await goal.save();
+    // Save the updated goal to the database
+    await goal.save();
 
-//     res.status(200).json(goal);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(400).json(error);
-//   }
-// });
+    res.status(200).json(goal);
+  } catch (error) {
+    console.error(error);
+    res.status(400).json(error);
+  }
+});
 
 // CREATE ROUTE
 router.post("/", async (req,res) => {
