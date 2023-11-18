@@ -9,14 +9,13 @@ const morgan = require('morgan');
 const cors = require('cors');
 const goalController = require('./controller/goalController');
 const journalController = require('./controller/journalController');
-const progressController = require('./controller/progressController');
 const AuthController = require('./controller/AuthController');
 const cookieParser = require('cookie-parser')
 
-// Configure middleware
+// Middleware
 app.use(cors());
 app.use (cookieParser())
-app.use(bodyParser.urlencoded({ extended: true })); // creates req.body
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(morgan('tiny'));
 app.use(bodyParser.json());
