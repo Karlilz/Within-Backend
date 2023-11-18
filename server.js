@@ -11,9 +11,11 @@ const goalController = require('./controller/goalController');
 const journalController = require('./controller/journalController');
 const progressController = require('./controller/progressController');
 const AuthController = require('./controller/AuthController');
+const cookieParser = require('cookie-parser')
 
 // Configure middleware
 app.use(cors());
+app.use (cookieParser())
 app.use(bodyParser.urlencoded({ extended: true })); // creates req.body
 app.use(express.json());
 app.use(morgan('tiny'));
@@ -21,9 +23,7 @@ app.use(bodyParser.json());
 app.use('/',AuthController ) 
 app.use('/goals', goalController) 
 app.use('/journal', journalController) 
-// app.use('/progress', progressController) 
 
-// Define routes
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
