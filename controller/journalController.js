@@ -5,10 +5,11 @@ const JournalEntry = require('../model/JournalEntry');
 // INDEX ROUTE
 router.get("/", async (req, res) => {
   try {
-    const userId = req.user.id;
-    const entries = await JournalEntry.find({ user: userId });
-    res.json(entries);
+    // const userId = req.user.id;
+    // const entries = await JournalEntry.find({ user: userId });
+    res.json(await JournalEntry.find())
   } catch (error) {
+    console.log(error)
     res.status(400).json(error);
   }
 });
@@ -70,8 +71,8 @@ router.post("/", async (req, res) => {
 // SHOW ROUTE
 router.get("/:id", async (req, res) => {
   try {
-    const userId = req.user.id;
-    const entry = await JournalEntry.findOne({ _id: req.params.id, user: userId });
+    // const userId = req.user.id;
+    // const entry = await JournalEntry.findOne({ _id: req.params.id, user: userId });
     res.json(entry);
   } catch (error) {
     res.status(400).json(error);
