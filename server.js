@@ -23,14 +23,14 @@ app.use('/',AuthController )
 app.use('/goals', goalController) 
 app.use('/journal', journalController) 
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+// app.get('/', (req, res) => {
+//   res.send('Hello World!');
+// });
 
-app.get('/goals', (req,res) => {
-  console.log("Hitting the create route")
-  res.send(req.body);
-});
+// app.get('/goals', (req,res) => {
+//   console.log("Hitting the create route")
+//   res.send(req.body);
+// });
 
 
 
