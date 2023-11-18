@@ -34,7 +34,6 @@ router.put('/:id', async (req, res) => {
     // Extract goal ID from the request parameters
     const goalId = req.params.id;
 
-    // Find the goal in the database
     const goal = await Goal.findById(goalId);
 
     // Check if the goal exists
@@ -42,10 +41,8 @@ router.put('/:id', async (req, res) => {
       return res.status(404).json({ message: 'Goal not found' });
     }
 
-    // Assuming you have user authentication middleware that attaches the user ID to the request
     // const userId = req.user.id;
 
-    // Check if the authenticated user owns the goal
     // if (goal.userId !== userId) {
     //   return res.status(403).json({ message: 'Unauthorized access to the goal' });
     // }
@@ -67,6 +64,7 @@ router.put('/:id', async (req, res) => {
 // CREATE ROUTE
 router.post("/", async (req,res) => {
   console.log(req.body)
+  console.log(req.headers)
     try {
       let response = await Goal.create(req.body)
       console.log(response)
@@ -91,10 +89,8 @@ router.post("/", async (req,res) => {
 //       return res.status(404).json({ message: 'Goal not found' });
 //     }
 
-//     // Assuming you have user authentication middleware that attaches the user ID to the request
 //     const userId = req.user.id;
 
-//     // Check if the authenticated user owns the goal
 //     if (goal.userId !== userId) {
 //       return res.status(403).json({ message: 'Unauthorized access to the goal' });
 //     }

@@ -48,6 +48,9 @@ console.log(username, password)
 
     const token = jwt.sign({ userId: user._id }, 'your-secret-key', { expiresIn: '1h' });
 
+    console.log('User ID:', user._id);
+     console.log('Token:', token);
+
     res.status(200).json({ token, userId: user._id });
   } catch (error) {
     console.error(error);
